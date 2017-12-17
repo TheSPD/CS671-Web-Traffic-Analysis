@@ -10,6 +10,7 @@ class PreProcessor(object):
     num_articles = 0
     num_ts = 0
     seq_length = 0
+    data_dim = 0
 
     def __init__(self, filepath='./data/train_1.csv', seq_length=7,
                  num_articles=0):
@@ -26,7 +27,7 @@ class PreProcessor(object):
         self.page = self.train['Page']
         if(self.num_articles == 0):
             self.num_articles = self.train.shape[0]
-        self.num_ts = self.train.shape[1] - self.seq_length
+        self.num_ts = self.train.shape[1] - self.seq_length - 1
 
     def _preProcess(self):
         '''Extracting source, access and agent data from Page Information'''
@@ -67,6 +68,9 @@ class PreProcessor(object):
         self.source = self.one_hot_enc.fit_transform(self.source)
         self.access = self.one_hot_enc.fit_transform(self.access)
         self.agent = self.one_hot_enc.fit_transform(self.agent)
+        self.data_dim = self.source.shape[1] + \
+            self.access.shape[1] + \
+            self.agent.shape[1] + 1
 
     def saveArticles(self):
         '''Save articles in data folder'''

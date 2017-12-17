@@ -77,16 +77,16 @@ seq_length = 7
 ts_num = 0
 
 # for article in range(len(train)):
-for article in range(50):
-    curArticle = np.load('./data/article_' + str(article) + '.npy')
-    print curArticle.shape
-    print 'Creating timeseries for article ', article, '...'
-    for i in range(0, curArticle.shape[1] - seq_length):
-        ts_data = curArticle[:, i: i + seq_length]
-        ts_data = np.rot90(ts_data, 3, (0, 1))
-        ts_output = curArticle[0, i + seq_length]
-        np.save('./data/ts_data_' + str(ts_num) + '.npy',
-                ts_data)
-        np.save('./data/ts_output_' + str(ts_num) + '.npy',
-                ts_output)
-        ts_num += 1
+# for article in range(50):
+#     curArticle = np.load('./data/article_' + str(article) + '.npy')
+#     print curArticle.shape
+#     print 'Creating timeseries for article ', article, '...'
+#     for i in range(0, curArticle.shape[1] - seq_length):
+#         ts_data = curArticle[:, i: i + seq_length]
+#         ts_data = np.rot90(ts_data, 3, (0, 1))
+#         ts_output = curArticle[0, i + seq_length]
+#         np.save('./data/ts_data_' + str(ts_num) + '.npy',
+#                 ts_data)
+#         np.save('./data/ts_output_' + str(ts_num) + '.npy',
+#                 ts_output)
+#         ts_num += 1

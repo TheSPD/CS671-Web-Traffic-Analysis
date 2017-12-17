@@ -1,9 +1,5 @@
-from dataGenerator import DataGenerator
+from preProcessing import PreProcessor
 
-X = []
-y = []
+pp = PreProcessor(num_articles=50)
 
-training_generator = DataGenerator().generate(range(543 * 50))
-X, y = training_generator
-
-print X, y
+pp.saveArticles()

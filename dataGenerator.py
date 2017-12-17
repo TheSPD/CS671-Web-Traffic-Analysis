@@ -43,7 +43,7 @@ class DataGenerator(object):
         '''Generates data of batch_size samples'''
         # X : (n_samples, v_size, v_size, v_size, n_channels)
         # Initialization
-        X = np.empty((self.batch_size, self.dim_x, self.dim_y, 1))
+        X = np.empty((self.batch_size, self.dim_x, self.dim_y))
         y = np.empty((self.batch_size, 1))
 
         # Generate data
@@ -51,7 +51,8 @@ class DataGenerator(object):
             file_ID = i // self.ts_per_file
             file = np.load('./data/article_' + str(file_ID) + '.npy')
             ts_ID = i % self.ts_per_file
-            X[i, :, :, 0] = np.rot90(file[:, ts_ID : ts_ID + self.dim_x], 3, (0, 1))
+            X[i, :, :] = np.rot90(file[:, ts_ID: ts_ID + self.dim_x],
+                                  3, (0, 1))
             y[i] = file[0, ts_ID + self.dim_x]
 
         return X, y
